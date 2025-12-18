@@ -1,3 +1,5 @@
+![FastAPI Logo](raw.githubusercontent.com)
+
 # FastAPI Interview Questions & Answers
 
 A curated list of FastAPI interview questions based on the provided tutorial content. Covers setup, routing, validation, Pydantic, databases, WebSockets, and deployment.
@@ -203,6 +205,40 @@ A curated list of FastAPI interview questions based on the provided tutorial con
 1. [What is Deta and how do you deploy to it?](#q198)
 1. [What does `deta new` do?](#q199)
 1. [Where can you access the deployed app and docs?](#q200)
+1. [What is APIRouter and why use it in bigger FastAPI applications?](#q201)
+1. [How do you include an APIRouter in the main FastAPI app?](#q202)
+1. [How do you apply a common prefix, tags, responses, or dependencies when including a router?](#q203)
+1. [In what order are router-level and decorator-level dependencies executed?](#q204)
+1. [What does the status_code parameter in a path operation decorator do?](#q205)
+1. [How do tags help API documentation, and how can you manage them consistently?](#q206)
+1. [How can you add summary and description metadata to an endpoint?](#q207)
+1. [How can you provide a description via the function docstring?](#q208)
+1. [What does response_description control and what default is used if omitted?](#q209)
+1. [How do you mark an endpoint as deprecated in FastAPI?](#q210)
+1. [How do you change the response status code dynamically per request?](#q211)
+1. [What is BackgroundTasks and when should you use it?](#q212)
+1. [How do background tasks work across dependencies?](#q213)
+1. [How do you raise an HTTP error in FastAPI, and what should detail contain?](#q214)
+1. [How can you add custom headers to an HTTPException response?](#q215)
+1. [How do you register a custom exception handler for your own exception type?](#q216)
+1. [How do you override the RequestValidationError handler, and what caution applies?](#q217)
+1. [What is jsonable_encoder and why is it useful for databases?](#q218)
+1. [How do you implement partial updates with PATCH and exclude_unset?](#q219)
+1. [What extra data types are supported by FastAPI/Pydantic and how are they serialized?](#q220)
+1. [How do you group query parameters into a Pydantic model?](#q221)
+1. [How do you forbid extra query parameters when using a model?](#q222)
+1. [How do you declare header parameters with a Pydantic model and control underscore conversion?](#q223)
+1. [Why might cookie parameter models not work when executing from Swagger UI?](#q224)
+1. [How do you declare form fields with a Pydantic model?](#q225)
+1. [What is response_class and how does it affect response encoding and docs?](#q226)
+1. [When should you return a Response directly, and what do you lose by doing so?](#q227)
+1. [How do you set response headers or cookies using a Response parameter?](#q228)
+1. [How do you load settings from environment variables using Pydantic Settings?](#q229)
+1. [How can you inject settings via a dependency to make testing easier?](#q230)
+1. [How do you write async tests with HTTPX AsyncClient and pytest.anyio?](#q231)
+1. [How do you enable trusted proxy headers and configure root_path behind a proxy?](#q232)
+1. [How do you exclude unset/default/None fields from responses with response_model settings?](#q233)
+1. [When would you access the Request object directly, and what is the tradeoff?](#q234)
 
 <a id="q1"></a>
 ### 1. What is FastAPI and what is it used for?
@@ -1278,3 +1314,139 @@ It creates a new micro, installs dependencies, and deploys your app to an endpoi
 <a id="q200"></a>
 ### 200. Where can you access the deployed app and docs?
 Use the endpoint URL given by Deta, and add `/docs` for Swagger UI.
+
+<a id="q201"></a>
+### 201. What is APIRouter and why use it in bigger FastAPI applications?
+APIRouter is a router class for grouping related endpoints in separate modules. It acts like a mini FastAPI app so you can keep routes organized, reuse prefixes, tags, responses, and dependencies, and then include them in the main app.
+
+<a id="q202"></a>
+### 202. How do you include an APIRouter in the main FastAPI app?
+Create a router in a module, define routes on it, import it in main, and call `app.include_router(router)`. The router routes are added to the application and appear in the OpenAPI docs.
+
+<a id="q203"></a>
+### 203. How do you apply a common prefix, tags, responses, or dependencies when including a router?
+Set those options in the APIRouter constructor or pass them to `app.include_router(...)`. Prefixes should not end with a trailing slash, and the options apply to every route in that router.
+
+<a id="q204"></a>
+### 204. In what order are router-level and decorator-level dependencies executed?
+Router-level dependencies run first, then dependencies declared in the path operation decorator, and then parameter dependencies. All dependencies are resolved before the endpoint function runs.
+
+<a id="q205"></a>
+### 205. What does the status_code parameter in a path operation decorator do?
+It sets the default HTTP status code for successful responses and documents it in OpenAPI. You can pass an int or constants from `fastapi.status` or `http.HTTPStatus`.
+
+<a id="q206"></a>
+### 206. How do tags help API documentation, and how can you manage them consistently?
+Tags group endpoints in the interactive docs and OpenAPI. You can pass `tags=[...]`, and for consistency you can define tags in an Enum or constants.
+
+<a id="q207"></a>
+### 207. How can you add summary and description metadata to an endpoint?
+Use `summary=` and `description=` on the path operation decorator. These values show up in OpenAPI and Swagger UI.
+
+<a id="q208"></a>
+### 208. How can you provide a description via the function docstring?
+Write a docstring inside the path operation function and FastAPI will use it as the description. Markdown in the docstring is rendered in the docs.
+
+<a id="q209"></a>
+### 209. What does response_description control and what default is used if omitted?
+It sets the response description in OpenAPI. If omitted, FastAPI uses a default like "Successful response".
+
+<a id="q210"></a>
+### 210. How do you mark an endpoint as deprecated in FastAPI?
+Pass `deprecated=True` to the path operation decorator. The docs UI will mark the endpoint as deprecated.
+
+<a id="q211"></a>
+### 211. How do you change the response status code dynamically per request?
+Accept a `Response` parameter and set `response.status_code` inside the function. You can still return normal data and keep response_model filtering.
+
+<a id="q212"></a>
+### 212. What is BackgroundTasks and when should you use it?
+BackgroundTasks lets you schedule work to run after the response is sent. Use it for small side effects like emails or logging that should not block the response.
+
+<a id="q213"></a>
+### 213. How do background tasks work across dependencies?
+Declare `BackgroundTasks` in dependencies or sub-dependencies; FastAPI reuses the same instance and aggregates tasks. All added tasks run after the response is sent.
+
+<a id="q214"></a>
+### 214. How do you raise an HTTP error in FastAPI, and what should detail contain?
+Raise `HTTPException(status_code=..., detail=...)`. The detail can be any JSON-serializable data and becomes the error response body.
+
+<a id="q215"></a>
+### 215. How can you add custom headers to an HTTPException response?
+Pass a `headers` dict when raising `HTTPException`. This is useful for auth challenges or rate limit hints.
+
+<a id="q216"></a>
+### 216. How do you register a custom exception handler for your own exception type?
+Use `@app.exception_handler(CustomError)` and return a response, commonly a `JSONResponse`. The handler receives the `Request` and the exception instance.
+
+<a id="q217"></a>
+### 217. How do you override the RequestValidationError handler, and what caution applies?
+Register a handler with `@app.exception_handler(RequestValidationError)` to customize validation output. Avoid leaking internal file or line details when returning errors to clients.
+
+<a id="q218"></a>
+### 218. What is jsonable_encoder and why is it useful for databases?
+`jsonable_encoder` converts Pydantic models and complex types (like datetime) into JSON-compatible data structures. It returns Python objects ready for JSON serialization or storage in JSON-based databases.
+
+<a id="q219"></a>
+### 219. How do you implement partial updates with PATCH and exclude_unset?
+Use a model with optional fields and call `model.model_dump(exclude_unset=True)` (or `.dict()` in Pydantic v1) to get only provided values. Merge into the stored model with `model_copy(update=...)` and save the result.
+
+<a id="q220"></a>
+### 220. What extra data types are supported by FastAPI/Pydantic and how are they serialized?
+FastAPI supports UUID, datetime/date/time, timedelta, Decimal, bytes, sets, and more. They parse from strings and serialize to JSON-friendly formats like ISO 8601 strings, floats, or lists.
+
+<a id="q221"></a>
+### 221. How do you group query parameters into a Pydantic model?
+Define a Pydantic model and declare it with `Annotated[Model, Query()]` in the endpoint signature. FastAPI pulls each field from the query string and validates it.
+
+<a id="q222"></a>
+### 222. How do you forbid extra query parameters when using a model?
+Set the model config to forbid extra fields (for example `extra = "forbid"`). Extra query parameters will produce a 422 validation error.
+
+<a id="q223"></a>
+### 223. How do you declare header parameters with a Pydantic model and control underscore conversion?
+Use `Annotated[HeaderModel, Header()]` for grouped headers. To keep underscores, pass `Header(convert_underscores=False)`, noting some proxies reject underscores.
+
+<a id="q224"></a>
+### 224. Why might cookie parameter models not work when executing from Swagger UI?
+Browsers restrict JavaScript from setting arbitrary cookies, so the docs UI may not send them. The cookies still appear in docs, but execution can fail without real browser cookies.
+
+<a id="q225"></a>
+### 225. How do you declare form fields with a Pydantic model?
+Create a Pydantic model and declare it with `Annotated[Model, Form()]` in the endpoint. FastAPI extracts form fields into the model and validates them.
+
+<a id="q226"></a>
+### 226. What is response_class and how does it affect response encoding and docs?
+`response_class` lets you choose the Response subclass in the decorator, which sets the media type and OpenAPI docs. JSON response classes still apply response_model filtering to returned data.
+
+<a id="q227"></a>
+### 227. When should you return a Response directly, and what do you lose by doing so?
+Return a Response directly when you need full control over headers, cookies, media type, or streaming. You bypass response_model filtering and automatic OpenAPI documentation for that response.
+
+<a id="q228"></a>
+### 228. How do you set response headers or cookies using a Response parameter?
+Accept a `Response` parameter and set headers or cookies on it, such as `response.headers[...]` or `response.set_cookie(...)`. FastAPI merges those into the final response while still serializing your returned data.
+
+<a id="q229"></a>
+### 229. How do you load settings from environment variables using Pydantic Settings?
+Create a Settings class that inherits from `BaseSettings` (from `pydantic_settings`) and instantiate it. Pydantic reads env vars, parses types, and can also load from a `.env` file.
+
+<a id="q230"></a>
+### 230. How can you inject settings via a dependency to make testing easier?
+Provide a `get_settings` dependency that returns a Settings instance (often cached with `lru_cache`) and use it with Depends. In tests, override the dependency to supply test settings.
+
+<a id="q231"></a>
+### 231. How do you write async tests with HTTPX AsyncClient and pytest.anyio?
+Mark tests with `@pytest.mark.anyio`, create an `httpx.AsyncClient(app=app, base_url="http://test")`, and `await` requests. Use a lifespan manager if your tests need startup or shutdown events.
+
+<a id="q232"></a>
+### 232. How do you enable trusted proxy headers and configure root_path behind a proxy?
+Run the server with `--forwarded-allow-ips` to trust `X-Forwarded-*` headers so redirects and URLs use the public scheme and host. Use `--root-path` when a proxy strips a prefix so OpenAPI and docs point to the correct path.
+
+<a id="q233"></a>
+### 233. How do you exclude unset/default/None fields from responses with response_model settings?
+Use `response_model_exclude_unset`, `response_model_exclude_defaults`, or `response_model_exclude_none` in the decorator. These control which fields are omitted during response serialization.
+
+<a id="q234"></a>
+### 234. When would you access the Request object directly, and what is the tradeoff?
+Access `Request` when you need raw request details like client host or the full body. The tradeoff is that data read directly is not validated or documented by FastAPI.
