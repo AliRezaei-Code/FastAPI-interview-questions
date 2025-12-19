@@ -11,6 +11,10 @@ LinkedIn: https://www.linkedin.com/in/ali-r-652a79170/
 
 X (Twitter): https://x.com/AliRezaeiX
 
+# Contributions
+
+Contributions are very welcome. Feel free to submit pull requests to add new questions, improve existing ones, or open issues if you spot any mistakes or want to discuss the wording or accuracy of a question. I check GitHub regularly and will review and merge contributions as soon as possible.
+
 ### Table of Contents
 1. [What is FastAPI and what is it used for?](#q1)
 1. [What Python versions does FastAPI require?](#q2)
