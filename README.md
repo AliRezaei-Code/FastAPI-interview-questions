@@ -1,8 +1,15 @@
-![FastAPI Logo](raw.githubusercontent.com)
 
 # FastAPI Interview Questions & Answers
 
-A curated list of FastAPI interview questions based on the provided tutorial content. Covers setup, routing, validation, Pydantic, databases, WebSockets, and deployment.
+I put together this list of questions to test and reinforce my understanding of FastAPI after building projects with it and working through the official documentation. I decided to share it here in case it’s helpful to others as well.
+
+This is a curated set of FastAPI interview questions covering core concepts such as setup, routing, validation, Pydantic models, database integration, WebSockets, and deployment.
+
+Feel free to connect with me:
+
+LinkedIn: https://www.linkedin.com/in/ali-r-652a79170/
+
+X (Twitter): https://x.com/AliRezaeiX
 
 ### Table of Contents
 1. [What is FastAPI and what is it used for?](#q1)
