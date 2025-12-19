@@ -16,240 +16,242 @@ X (Twitter): https://x.com/AliRezaeiX
 Contributions are very welcome. Feel free to submit pull requests to add new questions, improve existing ones, or open issues if you spot any mistakes or want to discuss the wording or accuracy of a question. I check GitHub regularly and will review and merge contributions as soon as possible.
 
 ### Table of Contents
-1. [What is FastAPI and what is it used for?](#q1)
-1. [What Python versions does FastAPI require?](#q2)
-1. [Which two libraries is FastAPI built on top of?](#q3)
-1. [What standards does FastAPI support out of the box?](#q4)
-1. [What are the main benefits highlighted for FastAPI?](#q5)
-1. [When was FastAPI created and by whom?](#q6)
-1. [Why is FastAPI described as production-ready?](#q7)
-1. [How does FastAPI performance compare to Node and Go?](#q8)
-1. [How do you install FastAPI with pip?](#q9)
-1. [Why do you need an ASGI server like Uvicorn?](#q10)
-1. [How do you install Uvicorn (minimal vs standard)?](#q11)
-1. [What extra capabilities come with Uvicorn standard install?](#q12)
-1. [How can you verify installed packages and versions?](#q13)
-1. [Why use a virtual environment for FastAPI?](#q14)
-1. [What is the minimal FastAPI app structure?](#q15)
-1. [What does `app = FastAPI()` represent?](#q16)
-1. [How do you define a GET route for "/"?](#q17)
-1. [What types can a path function return?](#q18)
-1. [How do you start a dev server with reload?](#q19)
-1. [What does the `--reload` flag do?](#q20)
-1. [What is the purpose of the `/docs` endpoint?](#q21)
-1. [Which UI does `/docs` use?](#q22)
-1. [What does `/openapi.json` return?](#q23)
-1. [How does FastAPI use JSON Schema?](#q24)
-1. [What is `/redoc` used for?](#q25)
-1. [What information appears in the OpenAPI schema?](#q26)
-1. [What is Uvicorn and what standard does it implement?](#q27)
-1. [Why are WSGI servers not suitable for async apps?](#q28)
-1. [Which libraries does Uvicorn use under the hood?](#q29)
-1. [How do you run Uvicorn from the command line?](#q30)
-1. [How do you run Uvicorn programmatically?](#q31)
-1. [Which CLI options are commonly used for host and port?](#q32)
-1. [What problem do Python type hints solve in FastAPI?](#q33)
-1. [How do you declare type hints for parameters?](#q34)
-1. [How do you declare a return type hint?](#q35)
-1. [Why can runtime TypeError still happen with type hints?](#q36)
-1. [What is MyPy and how is it used?](#q37)
-1. [How do typing.List and typing.Dict help with type hints?](#q38)
-1. [How do type hints improve IDE autocomplete?](#q39)
-1. [Why does typing a variable as str help method suggestions?](#q40)
-1. [How do type hints help with user-defined classes?](#q41)
-1. [How do type hints affect OpenAPI generation?](#q42)
-1. [What is REST in the context of FastAPI?](#q43)
-1. [What REST constraints are listed in the tutorial?](#q44)
-1. [What advantages do REST constraints provide?](#q45)
-1. [Which HTTP methods map to CRUD?](#q46)
-1. [How does FastAPI expose resources?](#q47)
-1. [What does statelessness mean in REST?](#q48)
-1. [What is a path parameter?](#q49)
-1. [How do you declare a path parameter in a route?](#q50)
-1. [How do you access a path parameter in the function?](#q51)
-1. [Can a route have multiple path parameters?](#q52)
-1. [How do type hints validate path parameters?](#q53)
-1. [What error occurs on type mismatch for path params?](#q54)
-1. [How do path parameters differ from query parameters?](#q55)
-1. [How does Swagger UI display path parameters?](#q56)
-1. [How does FastAPI detect query parameters?](#q57)
-1. [How do you define a route that uses only query params?](#q58)
-1. [What is the URL format for query parameters?](#q59)
-1. [Can you mix path and query parameters?](#q60)
-1. [Where do query parameters appear in Swagger UI?](#q61)
-1. [What happens when a required query parameter is missing?](#q62)
-1. [How do you validate path parameters with Path?](#q63)
-1. [How do you enforce min_length and max_length?](#q64)
-1. [What numeric rules can Path enforce?](#q65)
-1. [How do you validate query parameters with Query?](#q66)
-1. [What does a validation error response include?](#q67)
-1. [Why use `*` for keyword-only parameters with Path/Query?](#q68)
-1. [How are validation rules shown in OpenAPI docs?](#q69)
-1. [What is Pydantic used for in FastAPI?](#q70)
-1. [How do you define a Pydantic model?](#q71)
-1. [How does Pydantic handle type coercion?](#q72)
-1. [What happens when Pydantic validation fails?](#q73)
-1. [What is the Field class used for?](#q74)
-1. [How do you convert a model to a dict?](#q75)
-1. [What is `orm_mode` and why use it?](#q76)
-1. [How do you accept a request body with Pydantic?](#q77)
-1. [Which HTTP method is typical for request bodies?](#q78)
-1. [How do you accept primitive body values with Body?](#q79)
-1. [How do you combine path/query parameters with a body?](#q80)
-1. [How does Swagger UI show request body schemas?](#q81)
-1. [How does FastAPI serialize return values?](#q82)
-1. [Can you return the same model you received?](#q83)
-1. [How do you compute and return derived fields?](#q84)
-1. [How do you return raw HTML from a route?](#q85)
-1. [Which response class is used for HTML?](#q86)
-1. [Which template engine is used in the tutorial?](#q87)
-1. [How do you configure Jinja2Templates?](#q88)
-1. [Why must the request be passed to TemplateResponse?](#q89)
-1. [How do you insert variables in a Jinja2 template?](#q90)
-1. [How do you pass a path parameter to a template?](#q91)
-1. [What are static files in a FastAPI app?](#q92)
-1. [Which library is required to serve static files?](#q93)
-1. [How do you mount a static directory?](#q94)
-1. [How do you reference static files in templates?](#q95)
-1. [How do you include JavaScript from /static?](#q96)
-1. [Why keep assets in static instead of templates?](#q97)
-1. [How do you render an HTML form template?](#q98)
-1. [Which HTTP method is used for form submission?](#q99)
-1. [What is the role of the form enctype attribute?](#q100)
-1. [How do you route a form action to a FastAPI endpoint?](#q101)
-1. [Which FastAPI class parses form fields?](#q102)
-1. [Which package is required for form parsing?](#q103)
-1. [How do you declare form fields in a route?](#q104)
-1. [What content type is used for form submissions?](#q105)
-1. [Can you return a Pydantic model from form data?](#q106)
-1. [How do you accept file uploads?](#q107)
-1. [Which types are used for uploaded files?](#q108)
-1. [How do you save an uploaded file to disk?](#q109)
-1. [What form encoding is required for file uploads?](#q110)
-1. [What does UploadFile provide compared to bytes?](#q111)
-1. [What are cookies used for?](#q112)
-1. [How do you set a cookie in FastAPI?](#q113)
-1. [How do you read a cookie in FastAPI?](#q114)
-1. [Where do cookie parameters show up in Swagger UI?](#q115)
-1. [What happens if a cookie is missing?](#q116)
-1. [How do you read a request header in FastAPI?](#q117)
-1. [How are header names with hyphens handled?](#q118)
-1. [How do you add custom headers to a response?](#q119)
-1. [How do you set standard response headers?](#q120)
-1. [Where can you see response headers in Swagger UI?](#q121)
-1. [What is response_model used for?](#q122)
-1. [How does response_model filter output fields?](#q123)
-1. [How does response_model affect OpenAPI?](#q124)
-1. [Can you return a larger object with a smaller response_model?](#q125)
-1. [How does FastAPI validate response data?](#q126)
-1. [How do you hide fields using response_model?](#q127)
-1. [How do you define nested Pydantic models?](#q128)
-1. [Can a model contain a list or tuple of other models?](#q129)
-1. [How are nested models shown in Swagger UI?](#q130)
-1. [How do nested models map to JSON?](#q131)
-1. [Why use nested models?](#q132)
-1. [What is dependency injection in FastAPI?](#q133)
-1. [How does Depends reduce repeated parameters?](#q134)
-1. [How do you create a dependency function?](#q135)
-1. [How do you use a dependency in a route?](#q136)
-1. [How do you implement dependencies as classes?](#q137)
-1. [How do you declare decorator-level dependencies?](#q138)
-1. [How do you use dependencies for validation?](#q139)
-1. [Why use yield in a dependency?](#q140)
-1. [What is CORS and why does it matter?](#q141)
-1. [What is an origin?](#q142)
-1. [How do you enable CORS in FastAPI?](#q143)
-1. [What do allow_origins, allow_methods, allow_headers do?](#q144)
-1. [What does CRUD stand for?](#q145)
-1. [How do you implement CREATE with POST?](#q146)
-1. [How do you implement READ all with GET?](#q147)
-1. [How do you implement READ by id?](#q148)
-1. [How do you implement UPDATE with PUT?](#q149)
-1. [How do you implement DELETE with DELETE?](#q150)
-1. [What are the limits of an in-memory list database?](#q151)
-1. [Why use SQLAlchemy with FastAPI?](#q152)
-1. [How do you create a SQLite engine?](#q153)
-1. [What is a SQLAlchemy session?](#q154)
-1. [What is declarative_base used for?](#q155)
-1. [How do you define a SQLAlchemy model?](#q156)
-1. [How do you create tables in the database?](#q157)
-1. [How do you map Pydantic models to ORM models?](#q158)
-1. [What is orm_mode in SQLAlchemy responses?](#q159)
-1. [How do you add a record with a session?](#q160)
-1. [How do you query records and return them?](#q161)
-1. [Why use MongoDB with FastAPI?](#q162)
-1. [Which Python driver is used for MongoDB?](#q163)
-1. [How do you connect to MongoDB?](#q164)
-1. [How do you insert a document into a collection?](#q165)
-1. [How do you return a list of values with distinct?](#q166)
-1. [How do you query a document by id?](#q167)
-1. [What is GraphQL and why use it with FastAPI?](#q168)
-1. [Which GraphQL library does the tutorial recommend?](#q169)
-1. [How do you define Strawberry types and fields?](#q170)
-1. [How do you mount a GraphQL app in FastAPI?](#q171)
-1. [What endpoint provides the GraphiQL IDE?](#q172)
-1. [What is a WebSocket and how is it different from HTTP?](#q173)
-1. [How does FastAPI support WebSockets?](#q174)
-1. [What is the basic WebSocket flow on the server?](#q175)
-1. [How do you define a WebSocket route?](#q176)
-1. [Why are WebSockets useful?](#q177)
-1. [How do you connect to a WebSocket from the browser?](#q178)
-1. [What does a simple echo WebSocket example do?](#q179)
-1. [What are startup and shutdown events?](#q180)
-1. [How do you register a startup handler?](#q181)
-1. [How do you register a shutdown handler?](#q182)
-1. [What are common uses for these handlers?](#q183)
-1. [What is a sub-application in FastAPI?](#q184)
-1. [How do you mount a sub-app?](#q185)
-1. [How does routing work for a mounted sub-app?](#q186)
-1. [Where are sub-app docs available?](#q187)
-1. [What is middleware in FastAPI?](#q188)
-1. [How do you create a custom middleware?](#q189)
-1. [What does call_next do?](#q190)
-1. [Name some built-in middleware.](#q191)
-1. [When does middleware execute?](#q192)
-1. [How do you mount a Flask app in FastAPI?](#q193)
-1. [What is WSGIMiddleware used for?](#q194)
-1. [What URL prefix is used for the Flask app?](#q195)
-1. [Can FastAPI and Flask run side by side?](#q196)
-1. [Why is deployment different from local dev?](#q197)
-1. [What is Deta and how do you deploy to it?](#q198)
-1. [What does `deta new` do?](#q199)
-1. [Where can you access the deployed app and docs?](#q200)
-1. [What is APIRouter and why use it in bigger FastAPI applications?](#q201)
-1. [How do you include an APIRouter in the main FastAPI app?](#q202)
-1. [How do you apply a common prefix, tags, responses, or dependencies when including a router?](#q203)
-1. [In what order are router-level and decorator-level dependencies executed?](#q204)
-1. [What does the status_code parameter in a path operation decorator do?](#q205)
-1. [How do tags help API documentation, and how can you manage them consistently?](#q206)
-1. [How can you add summary and description metadata to an endpoint?](#q207)
-1. [How can you provide a description via the function docstring?](#q208)
-1. [What does response_description control and what default is used if omitted?](#q209)
-1. [How do you mark an endpoint as deprecated in FastAPI?](#q210)
-1. [How do you change the response status code dynamically per request?](#q211)
-1. [What is BackgroundTasks and when should you use it?](#q212)
-1. [How do background tasks work across dependencies?](#q213)
-1. [How do you raise an HTTP error in FastAPI, and what should detail contain?](#q214)
-1. [How can you add custom headers to an HTTPException response?](#q215)
-1. [How do you register a custom exception handler for your own exception type?](#q216)
-1. [How do you override the RequestValidationError handler, and what caution applies?](#q217)
-1. [What is jsonable_encoder and why is it useful for databases?](#q218)
-1. [How do you implement partial updates with PATCH and exclude_unset?](#q219)
-1. [What extra data types are supported by FastAPI/Pydantic and how are they serialized?](#q220)
-1. [How do you group query parameters into a Pydantic model?](#q221)
-1. [How do you forbid extra query parameters when using a model?](#q222)
-1. [How do you declare header parameters with a Pydantic model and control underscore conversion?](#q223)
-1. [Why might cookie parameter models not work when executing from Swagger UI?](#q224)
-1. [How do you declare form fields with a Pydantic model?](#q225)
-1. [What is response_class and how does it affect response encoding and docs?](#q226)
-1. [When should you return a Response directly, and what do you lose by doing so?](#q227)
-1. [How do you set response headers or cookies using a Response parameter?](#q228)
-1. [How do you load settings from environment variables using Pydantic Settings?](#q229)
-1. [How can you inject settings via a dependency to make testing easier?](#q230)
-1. [How do you write async tests with HTTPX AsyncClient and pytest.anyio?](#q231)
-1. [How do you enable trusted proxy headers and configure root_path behind a proxy?](#q232)
-1. [How do you exclude unset/default/None fields from responses with response_model settings?](#q233)
-1. [When would you access the Request object directly, and what is the tradeoff?](#q234)
+| # | Question |
+|---:|---|
+| 1 | [What is FastAPI and what is it used for?](#q1) |
+| 2 | [What Python versions does FastAPI require?](#q2) |
+| 3 | [Which two libraries is FastAPI built on top of?](#q3) |
+| 4 | [What standards does FastAPI support out of the box?](#q4) |
+| 5 | [What are the main benefits highlighted for FastAPI?](#q5) |
+| 6 | [When was FastAPI created and by whom?](#q6) |
+| 7 | [Why is FastAPI described as production-ready?](#q7) |
+| 8 | [How does FastAPI performance compare to Node and Go?](#q8) |
+| 9 | [How do you install FastAPI with pip?](#q9) |
+| 10 | [Why do you need an ASGI server like Uvicorn?](#q10) |
+| 11 | [How do you install Uvicorn (minimal vs standard)?](#q11) |
+| 12 | [What extra capabilities come with Uvicorn standard install?](#q12) |
+| 13 | [How can you verify installed packages and versions?](#q13) |
+| 14 | [Why use a virtual environment for FastAPI?](#q14) |
+| 15 | [What is the minimal FastAPI app structure?](#q15) |
+| 16 | [What does `app = FastAPI()` represent?](#q16) |
+| 17 | [How do you define a GET route for "/"?](#q17) |
+| 18 | [What types can a path function return?](#q18) |
+| 19 | [How do you start a dev server with reload?](#q19) |
+| 20 | [What does the `--reload` flag do?](#q20) |
+| 21 | [What is the purpose of the `/docs` endpoint?](#q21) |
+| 22 | [Which UI does `/docs` use?](#q22) |
+| 23 | [What does `/openapi.json` return?](#q23) |
+| 24 | [How does FastAPI use JSON Schema?](#q24) |
+| 25 | [What is `/redoc` used for?](#q25) |
+| 26 | [What information appears in the OpenAPI schema?](#q26) |
+| 27 | [What is Uvicorn and what standard does it implement?](#q27) |
+| 28 | [Why are WSGI servers not suitable for async apps?](#q28) |
+| 29 | [Which libraries does Uvicorn use under the hood?](#q29) |
+| 30 | [How do you run Uvicorn from the command line?](#q30) |
+| 31 | [How do you run Uvicorn programmatically?](#q31) |
+| 32 | [Which CLI options are commonly used for host and port?](#q32) |
+| 33 | [What problem do Python type hints solve in FastAPI?](#q33) |
+| 34 | [How do you declare type hints for parameters?](#q34) |
+| 35 | [How do you declare a return type hint?](#q35) |
+| 36 | [Why can runtime TypeError still happen with type hints?](#q36) |
+| 37 | [What is MyPy and how is it used?](#q37) |
+| 38 | [How do typing.List and typing.Dict help with type hints?](#q38) |
+| 39 | [How do type hints improve IDE autocomplete?](#q39) |
+| 40 | [Why does typing a variable as str help method suggestions?](#q40) |
+| 41 | [How do type hints help with user-defined classes?](#q41) |
+| 42 | [How do type hints affect OpenAPI generation?](#q42) |
+| 43 | [What is REST in the context of FastAPI?](#q43) |
+| 44 | [What REST constraints are listed in the documentation?](#q44) |
+| 45 | [What advantages do REST constraints provide?](#q45) |
+| 46 | [Which HTTP methods map to CRUD?](#q46) |
+| 47 | [How does FastAPI expose resources?](#q47) |
+| 48 | [What does statelessness mean in REST?](#q48) |
+| 49 | [What is a path parameter?](#q49) |
+| 50 | [How do you declare a path parameter in a route?](#q50) |
+| 51 | [How do you access a path parameter in the function?](#q51) |
+| 52 | [Can a route have multiple path parameters?](#q52) |
+| 53 | [How do type hints validate path parameters?](#q53) |
+| 54 | [What error occurs on type mismatch for path params?](#q54) |
+| 55 | [How do path parameters differ from query parameters?](#q55) |
+| 56 | [How does Swagger UI display path parameters?](#q56) |
+| 57 | [How does FastAPI detect query parameters?](#q57) |
+| 58 | [How do you define a route that uses only query params?](#q58) |
+| 59 | [What is the URL format for query parameters?](#q59) |
+| 60 | [Can you mix path and query parameters?](#q60) |
+| 61 | [Where do query parameters appear in Swagger UI?](#q61) |
+| 62 | [What happens when a required query parameter is missing?](#q62) |
+| 63 | [How do you validate path parameters with Path?](#q63) |
+| 64 | [How do you enforce min_length and max_length?](#q64) |
+| 65 | [What numeric rules can Path enforce?](#q65) |
+| 66 | [How do you validate query parameters with Query?](#q66) |
+| 67 | [What does a validation error response include?](#q67) |
+| 68 | [Why use `*` for keyword-only parameters with Path/Query?](#q68) |
+| 69 | [How are validation rules shown in OpenAPI docs?](#q69) |
+| 70 | [What is Pydantic used for in FastAPI?](#q70) |
+| 71 | [How do you define a Pydantic model?](#q71) |
+| 72 | [How does Pydantic handle type coercion?](#q72) |
+| 73 | [What happens when Pydantic validation fails?](#q73) |
+| 74 | [What is the Field class used for?](#q74) |
+| 75 | [How do you convert a model to a dict?](#q75) |
+| 76 | [What is `orm_mode` and why use it?](#q76) |
+| 77 | [How do you accept a request body with Pydantic?](#q77) |
+| 78 | [Which HTTP method is typical for request bodies?](#q78) |
+| 79 | [How do you accept primitive body values with Body?](#q79) |
+| 80 | [How do you combine path/query parameters with a body?](#q80) |
+| 81 | [How does Swagger UI show request body schemas?](#q81) |
+| 82 | [How does FastAPI serialize return values?](#q82) |
+| 83 | [Can you return the same model you received?](#q83) |
+| 84 | [How do you compute and return derived fields?](#q84) |
+| 85 | [How do you return raw HTML from a route?](#q85) |
+| 86 | [Which response class is used for HTML?](#q86) |
+| 87 | [Which template engine is used in the documentation?](#q87) |
+| 88 | [How do you configure Jinja2Templates?](#q88) |
+| 89 | [Why must the request be passed to TemplateResponse?](#q89) |
+| 90 | [How do you insert variables in a Jinja2 template?](#q90) |
+| 91 | [How do you pass a path parameter to a template?](#q91) |
+| 92 | [What are static files in a FastAPI app?](#q92) |
+| 93 | [Which library is required to serve static files?](#q93) |
+| 94 | [How do you mount a static directory?](#q94) |
+| 95 | [How do you reference static files in templates?](#q95) |
+| 96 | [How do you include JavaScript from /static?](#q96) |
+| 97 | [Why keep assets in static instead of templates?](#q97) |
+| 98 | [How do you render an HTML form template?](#q98) |
+| 99 | [Which HTTP method is used for form submission?](#q99) |
+| 100 | [What is the role of the form enctype attribute?](#q100) |
+| 101 | [How do you route a form action to a FastAPI endpoint?](#q101) |
+| 102 | [Which FastAPI class parses form fields?](#q102) |
+| 103 | [Which package is required for form parsing?](#q103) |
+| 104 | [How do you declare form fields in a route?](#q104) |
+| 105 | [What content type is used for form submissions?](#q105) |
+| 106 | [Can you return a Pydantic model from form data?](#q106) |
+| 107 | [How do you accept file uploads?](#q107) |
+| 108 | [Which types are used for uploaded files?](#q108) |
+| 109 | [How do you save an uploaded file to disk?](#q109) |
+| 110 | [What form encoding is required for file uploads?](#q110) |
+| 111 | [What does UploadFile provide compared to bytes?](#q111) |
+| 112 | [What are cookies used for?](#q112) |
+| 113 | [How do you set a cookie in FastAPI?](#q113) |
+| 114 | [How do you read a cookie in FastAPI?](#q114) |
+| 115 | [Where do cookie parameters show up in Swagger UI?](#q115) |
+| 116 | [What happens if a cookie is missing?](#q116) |
+| 117 | [How do you read a request header in FastAPI?](#q117) |
+| 118 | [How are header names with hyphens handled?](#q118) |
+| 119 | [How do you add custom headers to a response?](#q119) |
+| 120 | [How do you set standard response headers?](#q120) |
+| 121 | [Where can you see response headers in Swagger UI?](#q121) |
+| 122 | [What is response_model used for?](#q122) |
+| 123 | [How does response_model filter output fields?](#q123) |
+| 124 | [How does response_model affect OpenAPI?](#q124) |
+| 125 | [Can you return a larger object with a smaller response_model?](#q125) |
+| 126 | [How does FastAPI validate response data?](#q126) |
+| 127 | [How do you hide fields using response_model?](#q127) |
+| 128 | [How do you define nested Pydantic models?](#q128) |
+| 129 | [Can a model contain a list or tuple of other models?](#q129) |
+| 130 | [How are nested models shown in Swagger UI?](#q130) |
+| 131 | [How do nested models map to JSON?](#q131) |
+| 132 | [Why use nested models?](#q132) |
+| 133 | [What is dependency injection in FastAPI?](#q133) |
+| 134 | [How does Depends reduce repeated parameters?](#q134) |
+| 135 | [How do you create a dependency function?](#q135) |
+| 136 | [How do you use a dependency in a route?](#q136) |
+| 137 | [How do you implement dependencies as classes?](#q137) |
+| 138 | [How do you declare decorator-level dependencies?](#q138) |
+| 139 | [How do you use dependencies for validation?](#q139) |
+| 140 | [Why use yield in a dependency?](#q140) |
+| 141 | [What is CORS and why does it matter?](#q141) |
+| 142 | [What is an origin?](#q142) |
+| 143 | [How do you enable CORS in FastAPI?](#q143) |
+| 144 | [What do allow_origins, allow_methods, allow_headers do?](#q144) |
+| 145 | [What does CRUD stand for?](#q145) |
+| 146 | [How do you implement CREATE with POST?](#q146) |
+| 147 | [How do you implement READ all with GET?](#q147) |
+| 148 | [How do you implement READ by id?](#q148) |
+| 149 | [How do you implement UPDATE with PUT?](#q149) |
+| 150 | [How do you implement DELETE with DELETE?](#q150) |
+| 151 | [What are the limits of an in-memory list database?](#q151) |
+| 152 | [Why use SQLAlchemy with FastAPI?](#q152) |
+| 153 | [How do you create a SQLite engine?](#q153) |
+| 154 | [What is a SQLAlchemy session?](#q154) |
+| 155 | [What is declarative_base used for?](#q155) |
+| 156 | [How do you define a SQLAlchemy model?](#q156) |
+| 157 | [How do you create tables in the database?](#q157) |
+| 158 | [How do you map Pydantic models to ORM models?](#q158) |
+| 159 | [What is orm_mode in SQLAlchemy responses?](#q159) |
+| 160 | [How do you add a record with a session?](#q160) |
+| 161 | [How do you query records and return them?](#q161) |
+| 162 | [Why use MongoDB with FastAPI?](#q162) |
+| 163 | [Which Python driver is used for MongoDB?](#q163) |
+| 164 | [How do you connect to MongoDB?](#q164) |
+| 165 | [How do you insert a document into a collection?](#q165) |
+| 166 | [How do you return a list of values with distinct?](#q166) |
+| 167 | [How do you query a document by id?](#q167) |
+| 168 | [What is GraphQL and why use it with FastAPI?](#q168) |
+| 169 | [Which GraphQL library does the documentation recommend?](#q169) |
+| 170 | [How do you define Strawberry types and fields?](#q170) |
+| 171 | [How do you mount a GraphQL app in FastAPI?](#q171) |
+| 172 | [What endpoint provides the GraphiQL IDE?](#q172) |
+| 173 | [What is a WebSocket and how is it different from HTTP?](#q173) |
+| 174 | [How does FastAPI support WebSockets?](#q174) |
+| 175 | [What is the basic WebSocket flow on the server?](#q175) |
+| 176 | [How do you define a WebSocket route?](#q176) |
+| 177 | [Why are WebSockets useful?](#q177) |
+| 178 | [How do you connect to a WebSocket from the browser?](#q178) |
+| 179 | [What does a simple echo WebSocket example do?](#q179) |
+| 180 | [What are startup and shutdown events?](#q180) |
+| 181 | [How do you register a startup handler?](#q181) |
+| 182 | [How do you register a shutdown handler?](#q182) |
+| 183 | [What are common uses for these handlers?](#q183) |
+| 184 | [What is a sub-application in FastAPI?](#q184) |
+| 185 | [How do you mount a sub-app?](#q185) |
+| 186 | [How does routing work for a mounted sub-app?](#q186) |
+| 187 | [Where are sub-app docs available?](#q187) |
+| 188 | [What is middleware in FastAPI?](#q188) |
+| 189 | [How do you create a custom middleware?](#q189) |
+| 190 | [What does call_next do?](#q190) |
+| 191 | [Name some built-in middleware.](#q191) |
+| 192 | [When does middleware execute?](#q192) |
+| 193 | [How do you mount a Flask app in FastAPI?](#q193) |
+| 194 | [What is WSGIMiddleware used for?](#q194) |
+| 195 | [What URL prefix is used for the Flask app?](#q195) |
+| 196 | [Can FastAPI and Flask run side by side?](#q196) |
+| 197 | [Why is deployment different from local dev?](#q197) |
+| 198 | [What is Deta and how do you deploy to it?](#q198) |
+| 199 | [What does `deta new` do?](#q199) |
+| 200 | [Where can you access the deployed app and docs?](#q200) |
+| 201 | [What is APIRouter and why use it in bigger FastAPI applications?](#q201) |
+| 202 | [How do you include an APIRouter in the main FastAPI app?](#q202) |
+| 203 | [How do you apply a common prefix, tags, responses, or dependencies when including a router?](#q203) |
+| 204 | [In what order are router-level and decorator-level dependencies executed?](#q204) |
+| 205 | [What does the status_code parameter in a path operation decorator do?](#q205) |
+| 206 | [How do tags help API documentation, and how can you manage them consistently?](#q206) |
+| 207 | [How can you add summary and description metadata to an endpoint?](#q207) |
+| 208 | [How can you provide a description via the function docstring?](#q208) |
+| 209 | [What does response_description control and what default is used if omitted?](#q209) |
+| 210 | [How do you mark an endpoint as deprecated in FastAPI?](#q210) |
+| 211 | [How do you change the response status code dynamically per request?](#q211) |
+| 212 | [What is BackgroundTasks and when should you use it?](#q212) |
+| 213 | [How do background tasks work across dependencies?](#q213) |
+| 214 | [How do you raise an HTTP error in FastAPI, and what should detail contain?](#q214) |
+| 215 | [How can you add custom headers to an HTTPException response?](#q215) |
+| 216 | [How do you register a custom exception handler for your own exception type?](#q216) |
+| 217 | [How do you override the RequestValidationError handler, and what caution applies?](#q217) |
+| 218 | [What is jsonable_encoder and why is it useful for databases?](#q218) |
+| 219 | [How do you implement partial updates with PATCH and exclude_unset?](#q219) |
+| 220 | [What extra data types are supported by FastAPI/Pydantic and how are they serialized?](#q220) |
+| 221 | [How do you group query parameters into a Pydantic model?](#q221) |
+| 222 | [How do you forbid extra query parameters when using a model?](#q222) |
+| 223 | [How do you declare header parameters with a Pydantic model and control underscore conversion?](#q223) |
+| 224 | [Why might cookie parameter models not work when executing from Swagger UI?](#q224) |
+| 225 | [How do you declare form fields with a Pydantic model?](#q225) |
+| 226 | [What is response_class and how does it affect response encoding and docs?](#q226) |
+| 227 | [When should you return a Response directly, and what do you lose by doing so?](#q227) |
+| 228 | [How do you set response headers or cookies using a Response parameter?](#q228) |
+| 229 | [How do you load settings from environment variables using Pydantic Settings?](#q229) |
+| 230 | [How can you inject settings via a dependency to make testing easier?](#q230) |
+| 231 | [How do you write async tests with HTTPX AsyncClient and pytest.anyio?](#q231) |
+| 232 | [How do you enable trusted proxy headers and configure root_path behind a proxy?](#q232) |
+| 233 | [How do you exclude unset/default/None fields from responses with response_model settings?](#q233) |
+| 234 | [When would you access the Request object directly, and what is the tradeoff?](#q234) |
 
 <a id="q1"></a>
 ### 1. What is FastAPI and what is it used for?
@@ -269,7 +271,7 @@ FastAPI is fully compatible with OpenAPI and JSON Schema standards. This enables
 
 <a id="q5"></a>
 ### 5. What are the main benefits highlighted for FastAPI?
-The tutorial highlights high performance, fast development speed, fewer human errors, and ease of learning. It also emphasizes automatic docs and strong IDE support via type hints. These benefits combine to reduce boilerplate and increase confidence in request/response correctness.
+The documentation highlights high performance, fast development speed, fewer human errors, and ease of learning. It also emphasizes automatic docs and strong IDE support via type hints. These benefits combine to reduce boilerplate and increase confidence in request/response correctness.
 
 <a id="q6"></a>
 ### 6. When was FastAPI created and by whom?
@@ -281,7 +283,7 @@ It supports API standards, provides strong validation, and is designed for relia
 
 <a id="q8"></a>
 ### 8. How does FastAPI performance compare to Node and Go?
-The tutorial notes that FastAPI performance is on par with NodeJS and Go due to its ASGI foundation. Actual throughput depends on your server, I/O patterns, and implementation details. Using async I/O correctly and choosing an efficient ASGI server are key factors.
+The documentation notes that FastAPI performance is on par with NodeJS and Go due to its ASGI foundation. Actual throughput depends on your server, I/O patterns, and implementation details. Using async I/O correctly and choosing an efficient ASGI server are key factors.
 
 <a id="q9"></a>
 ### 9. How do you install FastAPI with pip?
@@ -404,7 +406,7 @@ WSGI is synchronous and cannot efficiently handle async tasks or WebSockets. It 
 
 <a id="q29"></a>
 ### 29. Which libraries does Uvicorn use under the hood?
-The tutorial mentions uvloop for the event loop and httptools for HTTP. These provide faster async I/O and HTTP parsing compared to pure-Python defaults. They are included in the standard extras.
+The documentation mentions uvloop for the event loop and httptools for HTTP. These provide faster async I/O and HTTP parsing compared to pure-Python defaults. They are included in the standard extras.
 
 <a id="q30"></a>
 ### 30. How do you run Uvicorn from the command line?
@@ -486,7 +488,7 @@ FastAPI uses type hints to build request/response schemas for OpenAPI. The gener
 REST is a resource-based architecture for web APIs using HTTP methods for operations. It emphasizes predictable URLs, statelessness, and uniform interfaces. Resources are typically nouns and actions are expressed via HTTP verbs.
 
 <a id="q44"></a>
-### 44. What REST constraints are listed in the tutorial?
+### 44. What REST constraints are listed in the documentation?
 - Uniform interface
 - Statelessness
 - Client-server
@@ -730,8 +732,8 @@ Return an HTMLResponse with HTML content. You can also set `response_class=HTMLR
 Use `fastapi.responses.HTMLResponse`. It sets the Content-Type to `text/html` for proper rendering. This ensures browsers render the content as HTML.
 
 <a id="q87"></a>
-### 87. Which template engine is used in the tutorial?
-The tutorial uses Jinja2 for templating. It supports template inheritance, filters, and server-side rendering. Jinja2 is a common choice in Python web apps.
+### 87. Which template engine is used in the documentation?
+The documentation uses Jinja2 for templating. It supports template inheritance, filters, and server-side rendering. Jinja2 is a common choice in Python web apps.
 
 <a id="q88"></a>
 ### 88. How do you configure Jinja2Templates?
@@ -1154,7 +1156,7 @@ MongoDB is a schema-less document store that fits flexible JSON-style data. It i
 
 <a id="q163"></a>
 ### 163. Which Python driver is used for MongoDB?
-The tutorial uses PyMongo. For async access in FastAPI, Motor is the common alternative. Motor wraps PyMongo with async support.
+The documentation uses PyMongo. For async access in FastAPI, Motor is the common alternative. Motor wraps PyMongo with async support.
 
 <a id="q164"></a>
 ### 164. How do you connect to MongoDB?
@@ -1182,8 +1184,8 @@ Use `find_one({"bookID": id})` or similar filters. If you use MongoDB's `_id`, y
 GraphQL provides a single endpoint and allows clients to request only the data they need. This can reduce overfetching and improve frontend flexibility. It can be useful for complex client-driven queries.
 
 <a id="q169"></a>
-### 169. Which GraphQL library does the tutorial recommend?
-The tutorial recommends Strawberry. It offers a Pythonic, type-annotated API that integrates with FastAPI. Its schema is derived from type hints.
+### 169. Which GraphQL library does the documentation recommend?
+The documentation recommends Strawberry. It offers a Pythonic, type-annotated API that integrates with FastAPI. Its schema is derived from type hints.
 
 <a id="q170"></a>
 ### 170. How do you define Strawberry types and fields?
